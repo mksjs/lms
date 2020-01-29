@@ -130,8 +130,6 @@ public class BookTo {
         TypedQuery<Book> q = entityManager.createQuery("SELECT x FROM Book x ORDER BY x.id DESC ", Book.class);
         List<Book> books = q.setFirstResult(page_id).setMaxResults(NBook).getResultList();   
         
-        
-        
         return books;
         
         
