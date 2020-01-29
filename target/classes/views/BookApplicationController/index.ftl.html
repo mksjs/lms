@@ -1,0 +1,82 @@
+<#import "../layout/defaultLayout.ftl.html" as layout> 
+<@layout.myLayout "Home page">    
+
+
+        
+<#if frontBook??>
+
+    <div class="jumbotron">
+    <#if session??>
+    	
+    
+        <h1>
+            <a href="/book/${frontBook.id}">${frontBook.title}</a>  
+              
+        </h1>
+         <h2>${frontBook.authorName}</h2>
+         <#if frontBook.availablity??>
+    		<button class="btn btn-info "> Available </button>
+    	
+    	<#else>
+    		<button class="btn btn-danger "> Not Available </button>
+    	</#if>
+     <#else>
+     		<h1>
+            	<a href="#">${frontBook.title}</a>    
+        	</h1>  
+         	<h2>${frontBook.authorName}</h2>
+    </#if>
+    
+         
+        
+    </div>
+</#if>
+
+<hr/>
+
+<#if olderBooks??>
+    <table border =2>
+    	<tr ><td><h1> Book Title</h1></td>
+        <td><h1>Author Name</h1></td>
+        <#if session??>
+        <td> <h1> Availablity </h1> </td>
+        </#if>
+    	
+    
+    <#list olderBooks as book>
+    	<#if session??>
+    	<tr class ="tableBody">
+    		<td >
+	        <h3>
+	            <a href="/book/${book.id}"> &nbsp; ${book.title}</a>    
+	        </h3> 
+         	</td>
+         	
+	        <td><h3> &nbsp;  ${book.authorName}</h3> </td>
+	        <td> 
+	        <#if book.availablity??>	
+	    		&nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp;<button class="btn btn-info ">   Available </button>
+    		<#else>
+    			 &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;<button class="btn btn-danger ">  Not Available </button>
+    		</#if>
+    		</td>
+    	<#else>
+    	
+    	<tr class ="tableBody">
+    		<td >
+	    		<h2>
+	            	<a href="#">${book.title}</a>    
+	        	</h2>  
+	        </td>
+	        <td>
+	         	<h2>${book.authorName}</h2>
+	         </td>
+	     </tr>
+         </#if>
+    		
+    </#list>
+    </table>
+    
+</#if>
+
+</@layout.myLayout>

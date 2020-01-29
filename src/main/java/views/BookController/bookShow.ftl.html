@@ -1,0 +1,40 @@
+<#import "../layout/defaultLayout.ftl.html" as layout> 
+<@layout.myLayout "Home page">    
+    
+    
+<#if book??>
+
+    <h1>${book.title}</h1>  
+    <h2>${book.authorName}</h2>
+    
+    <#if book.availablity??>
+    	<button class="btn btn-info "> Available </button>
+    	
+    <#else>
+    	<button class="btn btn-danger "> Not Available </button>
+    </#if>
+          
+     	
+		
+    	
+    	<form action="/book/delete/${book.id}" method="post" class="form-horizontal" role="form">
+    		<input type="submit" value="${i18n("book.delete")}"style='margin-right:16px' class="btn btn-danger pull-right" />
+
+		</form>
+		
+    	<form action="/book/update/${book.id}" method="get" class="form-horizontal" role="form">
+    		<input type="submit" value="${i18n("book.update")}"  style='margin-right:16px' class="btn btn-primary pull-right" />
+
+		</form>
+	 
+    	
+<#else>
+    
+    <p>Sorry. Books Not Found. Please go back to <a href="/index">index</a></p>
+    
+</#if>
+    
+
+     
+
+</@layout.myLayout>
