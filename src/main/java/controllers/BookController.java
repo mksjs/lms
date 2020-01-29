@@ -12,6 +12,7 @@ import ninja.params.PathParam;
 import ninja.validation.JSR303Validation;
 import ninja.validation.Validation;
 
+import java.util.List;
 import java.util.Map;
 
 import com.google.common.collect.Maps;
@@ -53,6 +54,24 @@ public class BookController {
        // result.render("user",user);
         return result;
         
+    }
+    
+    
+    public Result index1(@PathParam("page_id") int page_id){
+    	int nBook =10;
+    	 System.out.println(page_id);
+    	if(page_id ==1) {
+    		//do nothing
+    	}else {
+    		page_id = (page_id-1) * nBook +1;
+    	}
+    	List<Book> olderBooks = bookTo.getBookById(page_id);
+    	for(Book i : olderBooks) {
+    		System.out.println(i.authorName + i.title);
+    	}
+    	Map<String, Object> map =Maps.newHashMap();
+    	map.put("olderBooks",olderBooks);
+    	return Results.html().render("olderBooks",olderBooks);
     }
     
     

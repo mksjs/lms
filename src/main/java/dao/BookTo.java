@@ -121,6 +121,22 @@ public class BookTo {
         
     }
     
+    @Transactional
+    public List<Book> getBookById(int  page_id) {
+        
+    	int NBook =10;
+        EntityManager entityManager = entitiyManagerProvider.get();
+        
+        TypedQuery<Book> q = entityManager.createQuery("SELECT x FROM Book x ORDER BY x.id DESC ", Book.class);
+        List<Book> books = q.setFirstResult(page_id).setMaxResults(NBook).getResultList();   
+        
+        
+        
+        return books;
+        
+        
+    }
+    
     //@UnitOfWork
     @Transactional
     public Book getBook(Long id) {

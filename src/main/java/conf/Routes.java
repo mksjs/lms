@@ -21,6 +21,8 @@ import ninja.Router;
 import ninja.application.ApplicationRoutes;
 import ninja.utils.NinjaProperties;
 
+import org.hibernate.property.IndexPropertyAccessor;
+
 import com.google.inject.Inject;
 
 //import controllers.ApiController;
@@ -142,6 +144,7 @@ public class Routes implements ApplicationRoutes {
         // Index / Catchall shows index page
         ///////////////////////////////////////////////////////////////////////
         router.GET().route("/.*").with(BookApplicationController::index);
+       // router.GET().route("/index/{page_id}").with(BookController::index1);
     }
 
 }
